@@ -7,82 +7,60 @@ Largest prime factor
 The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 
-This is a __________ solution, please solve the problem yourself before you review my code.
+This is a W.I.P. solution, please solve the problem yourself before you review my code.
 @JackDraak
 */
 #include <vector>
 #include <iostream>
 #include <sstream>
 
+std::vector<long long> primeFactorSet;
+long long factoree;
+
 bool bInSet(long long, std::vector<long long>);
 bool bTestPrime(long long);
-void PrintFactors(long long, std::vector<long long>);
 long long GetUserNumber();
-std::vector<long long> GetPrimeFactors(long long);
+void PrintFactors(long long, std::vector<long long>);
 
 int main()
 {
+    // divide candidate by lowest prime that gives zero remainder.
+    // store that prime & reprocess dividend
+    // i.e. in the case of candidate 26 / 2 (where remainder  == 0)
+    // then store 2 and re-process with candidate 13 (resulting in storing 13)
     do
     {
         std::cout << "\nFind the prime factors of a number. Enter a number to factor: ";
-        long long factoree = GetUserNumber();
-        std::cout << "\nYou entered: " << factoree;
-        std::vector<long long> theseFactors;
-        theseFactors = GetPrimeFactors(factoree); 
-        PrintFactors(factoree, theseFactors);
-    } while (true);
-    return 0;
-}
+        factoree = GetUserNumber();
 
-std::vector<long long> GetPrimeFactors(long long factoree)
-{
-    bool bAllPrime;
-    std::vector<long long> primeFactors;
-    std::vector<long long> nonPrimeFactors;
-
-    if (bTestPrime(factoree))
-    {
-        primeFactors.push_back(factoree);
-        bAllPrime = true;
-    } else {
-        nonPrimeFactors.push_back(factoree);
-        bAllPrime = false;
-    }
-
-    if (!bAllPrime)
-    {
-   //     do
-   //     {
-            int setSize = nonPrimeFactors.size();
-            std::cout << "\nNPSetSize: " << setSize;
-            for (int setMember = 0; setMember < setSize; setMember++)
+        bool bCrunching = true;
+        int primeCandidate = 1;
+        int userNumber = factoree;
+        do
+        {
+            primeCandidate++;
+            if (bTestPrime(primeCandidate))
             {
-                long long thisFactoree = nonPrimeFactors[setMember];
-                std::cout << ", thisFactoree: " << thisFactoree;
-                for (long long divisor = 1; divisor < (thisFactoree / 5) +1; divisor++) // stop searching after first ~20%?
+                std::cout << "\nPrime Found: " << primeCandidate;
+                int remainder = userNumber % primeCandidate;
+                if (remainder == 0)
                 {
-                    if (thisFactoree % divisor == 0)
-                    {
-                        if (bTestPrime(divisor))
-                        {
-                            if (!bInSet(divisor, primeFactors))
-                            {
-                                std::cout << ", " << divisor << " pushed to prime set";
-                                primeFactors.push_back(divisor);
-                            }
-                            else if (!bInSet(divisor, nonPrimeFactors))
-                            {
-                                std::cout << ", " << divisor << " pushed to non-prime set";
-                                nonPrimeFactors.push_back(divisor);
-                                bAllPrime = false;
-                            }
-                        }
-                    }
+                    std::cout << " BINGO!";
+                    primeFactorSet.push_back(primeCandidate);
+                    userNumber = factoree / primeCandidate;
+                    break;
+                }
+                else {
+                    std::cout << " invalid....";
                 }
             }
-  //      } //while (!bAllPrime);
-    }
-    return primeFactors;
+
+
+        } while (bCrunching);
+        PrintFactors(factoree, primeFactorSet);
+
+    } while (true);
+    return 0;
 }
 
 void PrintFactors(long long factoree, std::vector<long long> factors)
@@ -123,24 +101,19 @@ bool bInSet(long long testNumber, std::vector<long long> testSet)
 
 bool bTestPrime(long long testee)
 {
-    std::cout << "\nbPrimeTest: " << testee;
     if (testee < 2) { return false; }
     bool bZeroRemainder = false;
-    int invalidDivisorCount = 0;
     std::vector<long long> theseDivisors;
-
-    std::cout << std::endl; 
+    std::cout << std::endl;  // newline
     for (long long thisDivisor = 2; thisDivisor < testee; thisDivisor++)
     {
         int thisRemainder = testee % thisDivisor;
-        float completion = (thisDivisor / testee) * 100.00f;
-        std::cout << thisDivisor << ":" << thisRemainder << " " << completion << "%     ";
+        std::cout << thisDivisor << ":" << thisRemainder << "    ";
         std::cout << std::string(28, 8);
         if (thisRemainder == 0)
         {
             theseDivisors.push_back(thisDivisor);
             bZeroRemainder = true;
-            invalidDivisorCount++;
         }
     }
     return !bZeroRemainder;

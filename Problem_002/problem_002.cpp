@@ -12,9 +12,10 @@ By starting with 1 and 2, the first 10 terms will be:
 By considering the terms in the Fibonacci sequence whose values do not exceed four million, 
 find the sum of the even-valued terms.
 
-This is a complete solution, please solve the problem yourself before you review my code.
+This is a functional solution, please solve the problem yourself before you review my code.
 @JackDraak
 */
+
 #include <vector>
 #include <iostream>
 #include <sstream>
