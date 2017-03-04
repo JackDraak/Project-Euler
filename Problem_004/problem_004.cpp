@@ -32,7 +32,8 @@ int main(void)
             if (digitalPalindrome(product) && product > largest)
             {
                 std::cout << "A palindromic number reads the same both ways.\n";
-                std::cout << "The largest palindrome made from the product of two 3-digit numbers is:\n" << product << " = " << b << " x " << a << ".\n";
+                std::cout << "The largest palindrome made from the product of two 3-digit numbers is:\n";
+                std::cout << product << " = " << b << " x " << a << ".\n";
                 largest = product;
                 setComplete = true;
             }
