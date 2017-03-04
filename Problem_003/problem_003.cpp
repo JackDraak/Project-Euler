@@ -35,7 +35,7 @@ int main()
 
         bool bCrunching = true;
         int primeCandidate = 1;
-        int userNumber = factoree;
+        long long userNumber = factoree;
         do
         {
             primeCandidate++;
@@ -107,7 +107,7 @@ bool bTestPrime(long long testee)
     std::cout << std::endl;  // newline
     for (long long thisDivisor = 2; thisDivisor < testee; thisDivisor++)
     {
-        int thisRemainder = testee % thisDivisor;
+        long long thisRemainder = testee % thisDivisor;
         std::cout << thisDivisor << ":" << thisRemainder << "    ";
         std::cout << std::string(28, 8);
         if (thisRemainder == 0)

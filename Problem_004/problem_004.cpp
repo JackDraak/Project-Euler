@@ -10,11 +10,51 @@ Largest palindrome product
 
     Find the largest palindrome made from the product of two 3-digit numbers.
 
-This is a W.I.P. solution, please solve the problem yourself before you review my code.
+This is a functional solution, please solve the problem yourself before you review my code.
 @JackDraak
 */
 
+#include <iostream>
+#include <sstream>
+
+bool digitalPalindrome(int);
+
 int main(void)
 {
+    bool setComplete = false;
+    int largest = 0;
+    int a = 999;
+    int b;
+    do {
+        for (b = a; b > a - 100; b--)
+        {
+            int product = a * b;
+            if (digitalPalindrome(product) && product > largest)
+            {
+                std::cout << "[A: " << a << ", B: " << b << "] largest palindrome product of two 3-digit numbers: " << product << "\n";
+                largest = product;
+                setComplete = true;
+            }
+        }
+        a--;
+        if (a < 100) setComplete = true; // break out
+    } while (!setComplete);
+
+    // Wait for input before exiting main.
+    std::string userInput;
+    std::cout << "\nPlease hit <Enter> to exit...\n";
+    getline(std::cin, userInput);
     return 0;
+}
+
+bool digitalPalindrome(int test)
+{
+    std::stringstream _s;
+    _s << test;
+    std::string str = _s.str();
+
+    if (str == std::string(str.rbegin(), str.rend())) {
+        return true;
+    }
+    return false;
 }
