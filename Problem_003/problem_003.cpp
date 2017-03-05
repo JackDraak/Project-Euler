@@ -10,10 +10,74 @@ What is the largest prime factor of the number 600851475143 ?
 This is a W.I.P. solution, please solve the problem yourself before you review my code.
 @JackDraak
 */
+
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <ctype.h>
 
+bool isPrime(long long);
+bool isNumber(std::string);
+long long stoll(std::string);
+
+std::vector<long long> primeFactors;
+
+int main(void)
+{
+    // Get a number from the console user.
+    std::string uInput;
+    std::cout << "\nPlease enter a number... ";
+    bool valid = false;
+    do {
+        getline(std::cin, uInput);
+        if (isdigit(uInput[0]))
+        {
+            int uNumber = atoi(uInput);
+        }
+        //valid = isNumber(uNumber);
+    } while (!valid);
+
+    std::cout << "Thank you for entering: " << inputNumber << "\n";
+
+    // Wait for input before exiting main.
+    std::string userInput;
+    std::cout << "\nhit <Enter> to exit...\n";
+    getline(std::cin, userInput);
+    return 0;
+}
+
+bool isNumber(std::string test)
+{
+    int testSize = test.length();
+    std::cout << "size: " << testSize << "\n";
+    if (testSize = 0) return false;
+    for (int i = 0; i < testSize; i++)
+    {
+        if ((test[i]) < 0 || test[i] > 9) return false;
+        else std::cout << i << ":" << test[i] << ":" << isdigit(test[i]);
+    }
+    return true;
+}
+
+long long stoll(std::string test)
+{
+    std::stringstream sstr(test);
+    __int64 conversion;
+    sstr >> conversion;
+    return conversion;
+}
+
+bool isPrime(long long test)
+{
+    bool prime = false;
+    for (long long n = test; n > 0; n--)
+    {
+
+    }
+    return prime;
+}
+
+/*
 std::vector<long long> primeFactorSet;
 long long factoree;
 
@@ -118,3 +182,5 @@ bool bTestPrime(long long testee)
     }
     return !bZeroRemainder;
 }
+*/
+
