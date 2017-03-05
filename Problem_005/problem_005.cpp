@@ -6,6 +6,7 @@ Smallest multiple
     2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 
     What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20? ^E^E^E <RANGE>
+    i.e. 5354228880 @ 23 or 80313433200 @ 27
 
 This is a functional solution, please solve the problem yourself before you review my code.
 @JackDraak
@@ -19,7 +20,7 @@ void    PauseForInput();
 
 int main()
 {
-    const int RANGE = 27;
+    const int RANGE = 30;
     uint64_t test = RANGE;
     int best = 0;
     bool finished = false;
@@ -32,11 +33,9 @@ int main()
             if (test % i != 0)
             {
                 failcount++;
-            //    std::cout << "0";
             }
             else {
                 passcount++;
-            //    std::cout << "1";
             }
             if (passcount > best) best = passcount;
         }
@@ -45,8 +44,6 @@ int main()
             finished = true;
             std::cout << test << " is the smallest number that can be divided by each of the\nnumbers from 1 to " << RANGE << " without any remainder.";
         }
-        if (test % 100000 == 0) std::cout << test << "\n";
-       // std::cout << " : " << test << " : " << best << "  \n";
         test += RANGE;
     } while (!finished);
     PauseForInput();
