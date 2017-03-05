@@ -7,7 +7,7 @@ Smallest multiple
 
     What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-This is a W.I.P. solution, please solve the problem yourself before you review my code.
+This is a functional solution, please solve the problem yourself before you review my code.
 @JackDraak
 */
 
@@ -30,30 +30,33 @@ void    PauseForInput();
 int main()
 {
     bool finished = false;
-    int test = 2100;
+    int test = 330000;
     int best = 0;
     Home();
     do {
         int passcount, failcount;
         failcount = 0;
         passcount = 0;
-        Home(22, 0); std::cout << test << "   "; // ID test#
-        for (int i = 1; i <= 10; i++)
+        //Home(22, 0); std::cout << test << "   "; // ID test#
+        for (int i = 2; i <= 20; i++)
         {
             if (test % i != 0)
             {
-                Home(i, 0); std::cout << i << ": fail";
+            //    Home(i-1, 0); std::cout << i << ": fail";
+                //Home(0, i); std::cout << "0";
                 failcount++;
             }
             else {
-                Home(i, 0); std::cout << i << ": pass";
+            //    Home(i-1, 0); std::cout << i << ": pass";
+                //Home(0, i); std::cout << "1";
                 passcount++;
             }
             if (passcount > best) best = passcount;
-            Home(21, 0); std::cout << "pass: " << passcount << ", fail: " << failcount << " (best: " << best << ")       ";
+            //Home(21, 0); std::cout << "pass: " << passcount << ", fail: " << failcount << "  ";
+            //Home(21, 20); std::cout << " (best: " << best << ")       ";
         }
         test++;
-        if (passcount == 10)
+        if (passcount == 19)
         {
             finished = true;
             Home(21, 0); std::cout << "pass: " << passcount << ", fail: " << failcount << " (test: " << test - 1<< ")       ";
