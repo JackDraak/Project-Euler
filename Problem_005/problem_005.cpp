@@ -20,7 +20,7 @@ void    PauseForInput();
 
 int main()
 {
-    const int RANGE = 30;
+    const int RANGE = 20;
     uint64_t test = RANGE;
     int best = 0;
     bool finished = false;
